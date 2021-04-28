@@ -1,9 +1,8 @@
 package main
 
 import (
-  
-    "fmt"
-    "os"
+   "fmt"
+   "os"
    "bytes"
 )
 
@@ -25,15 +24,19 @@ func main() {
     
    
     input_digits:= os.Args[1:]
-
-    for _,digit:= range input_digits {
-        var result bytes.Buffer
+    var result bytes.Buffer
+    
+    for index,digit:= range input_digits {
+        
         var digitString string
         for i := 0; i < len(digit); i++ {
             digitString = phonetic_dict[string(digit[i])]
             result.WriteString(digitString)
         }
-        fmt.Print(result.String()," ") 
+
+	if index < len(input_digits)-1 {
+		result.WriteString(",")
+	} 
     }
-    
+    fmt.Print(result.String())
 }
